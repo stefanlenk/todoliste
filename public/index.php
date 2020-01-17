@@ -1,9 +1,10 @@
 <?php
 
-include('controller/controller.php');
-include ('model/datenbank.php');
-include ('view/view.php');
+include_once ('controller/controller.php');
+include_once ('model/datenbank.php');
+include_once ('view/view.php');
 
-$request = array_merge($_GET, $_POST);
-$controller = new controller($request);
+$abfrage = array_merge($_GET, $_POST);
+$controller = new controller($abfrage);
 echo $controller->display();
+var_dump($abfrage);

@@ -1,6 +1,7 @@
 <?php
 
-while ($daten = $db->fetch_object())
+$zeile = "";
+foreach ($zeile as $request)
 {
     /*$nummer = $daten->nummer;
     $inhalt = $daten->inhalt;
@@ -9,11 +10,11 @@ while ($daten = $db->fetch_object())
 
     echo
         '<tr>
-    <td>' . $daten->nummer . '</td>  
-    <td>' . $daten->inhalt . '</td>
-    <td>' . $daten->datum . '</td>
-    <td><label><input type="button" name="status" value="' . $daten->status . '"></label></td>
-    <td><label><input type="submit" name="loeschen" value="löschen"></label></td>
-    </tr>
+        <td>' . $zeile->nummer . '</td>  
+        <td>' . $zeile->inhalt . '</td>
+        <td>' . $zeile->datum . '</td>
+        <td><label><input type="button" name="status" value="' . $zeile->status . '"></label></td>
+        <td><label><input type="submit" name="loeschen" value="löschen"></label></td>
+        </tr>
     ';
 }

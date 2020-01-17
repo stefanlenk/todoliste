@@ -6,9 +6,9 @@ class datenbank
     public $inhalt;
     public $datum;
     public $status;
-    private $abfrage = array();
+    private $erg;
     private $db;
-    private $request;
+    private $einlesenDatenbank;
 
     /*public function __construct()
     {
@@ -33,14 +33,19 @@ class datenbank
             die('Sorry - es gibt gerade ein Problem');
         }
 
-        return $request = $db->query("SELECT * FROM todoliste.liste");
-        /*while ($daten = $abfrage->fetch_object())
+        $erg = $db->query("SELECT * FROM todoliste.liste");
+
+        $einlesenDatenbank = $erg->fetch_object();
+        /*while ($einlesenDatenbank = $erg->fetch_object())
         {
-            $nummer = $request->nummer;
-            $inhalt = $request->inhalt;
-            $datum = $request->datum;
-            $status = $request->status;
+            $einlesenDatenbank->nummer;
+            $einlesenDatenbank->inhalt;
+            $einlesenDatenbank->datum;
+            $einlesenDatenbank->status;
         }*/
+        return $einlesenDatenbank;
+        //var_dump($einlesenDatenbank);
+        $erg->free();
     }
 
     public function eintragen($nummer, $inhalt, $datum, $status)
