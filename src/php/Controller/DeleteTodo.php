@@ -3,12 +3,13 @@
 namespace Application\Controller;
 
 use Application\Controller;
+use Application\Model\Response;
 
 class DeleteTodo extends Controller
 {
 
 	public function handleRequest()
 	{
-		// TODO: Implement handleRequest() method.
+		$this->response = new Response();
 	}
 }

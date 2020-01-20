@@ -3,12 +3,14 @@
 namespace Application\Controller;
 
 use Application\Controller;
+use Application\Model\Response;
 
 class UpdateTodo extends Controller
 {
 
 	public function handleRequest()
 	{
-		// TODO: Implement handleRequest() method.
+        var_dump(__CLASS__);
+		$this->response = new Response();
 	}
 }

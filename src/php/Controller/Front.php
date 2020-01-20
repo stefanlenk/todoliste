@@ -16,6 +16,12 @@ class Front extends Controller
 			case 'create-todo':
 				$controllerClassName = CreateTodo::class;
 				break;
+            case 'update-todo':
+                $controllerClassName = UpdateTodo::class;
+                break;
+            case 'delete-todo':
+                $controllerClassName = DeleteTodo::class;
+                break;
 			default:
 				$controllerClassName = ShowTodoList::class;
 				break;
