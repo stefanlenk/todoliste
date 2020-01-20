@@ -11,17 +11,14 @@ echo $controller->display();
 var_dump($abfrage);
 */
 
-require_once(__DIR__ . '/../src/php/Model/Request.php');
-require_once(__DIR__ . '/../src/php/Model/Response.php');
-require_once(__DIR__ . '/../src/php/Controller.php');
-require_once(__DIR__ . '/../src/php/Controller/Front.php');
-require_once(__DIR__ . '/../src/php/Model/Input/Name.php');
-require_once(__DIR__ . '/../src/php/Controller/CreateTodo.php');
-require_once(__DIR__ . '/../src/php/Controller/ShowTodoList.php');
+use Application\Controller\Front;
+use Application\Model\Request;
+
+require_once(__DIR__ . '/../src/php/AutoLoad.php');
 
 $parameters = array_merge($_GET, $_POST);
-$request = new \Application\Model\Request($parameters);
-$controller = new \Application\Controller\Front($request);
+$request = new Request($parameters);
+$controller = new Front($request);
 $controller->handleRequest();
 $response = $controller->getResponse();
 $response->send();
