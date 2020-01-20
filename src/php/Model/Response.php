@@ -2,10 +2,7 @@
 
 namespace Application\Model;
 
-class Response
+abstract class Response
 {
-	public function send()
-	{
-
-	}
+	abstract public function send();
 }

@@ -4,6 +4,7 @@ namespace Application\Controller;
 
 use Application\Controller;
 use Application\Model\Input\Name;
+use Application\Model\Input\Task;
 
 class Front extends Controller
 {
@@ -13,14 +14,17 @@ class Front extends Controller
 
 		switch($task)
 		{
-			case 'create-todo':
+			case Task::CreateTodo:
 				$controllerClassName = CreateTodo::class;
 				break;
-            case 'update-todo':
+            case Task::UpdateTodo:
                 $controllerClassName = UpdateTodo::class;
                 break;
-            case 'delete-todo':
+            case Task::DeleteTodo:
                 $controllerClassName = DeleteTodo::class;
+                break;
+            case Task::ShowTodo:
+                $controllerClassName = ShowTodo::class;
                 break;
 			default:
 				$controllerClassName = ShowTodoList::class;

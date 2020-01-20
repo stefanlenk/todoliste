@@ -3,7 +3,7 @@
 namespace Application\Controller;
 
 use Application\Controller;
-use Application\Model\Response;
+use Application\Model\Response\Html;
 
 class UpdateTodo extends Controller
 {
@@ -11,6 +11,6 @@ class UpdateTodo extends Controller
 	public function handleRequest()
 	{
         var_dump(__CLASS__);
-		$this->response = new Response();
+		$this->response = new Html(null);
 	}
 }
