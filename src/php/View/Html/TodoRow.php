@@ -7,7 +7,7 @@ use Application\Model\Input\Task;
 use Application\Model\Todo;
 use Application\View\Html;
 
-class TodoTabelle extends Html
+class TodoRow extends Html
 {
 	/** @var array */
 	protected $todos;
@@ -45,7 +45,7 @@ class TodoTabelle extends Html
 		$result = null;
 
 		foreach($this->todos as $todo)
-			$result .= $this->htmlTableRow($todo);
+			$result = $this->htmlTableRow($todo);
 
 		return $result;
 	}
@@ -123,12 +123,6 @@ class TodoTabelle extends Html
 	 */
 	protected function htmlAktionEntfernen($todo)
 	{
-	    $query = http_build_query(array(
-	       Name::Task => Task::DeleteTodo,
-           Name::TodoId => $todo->getTodoId(),
-        ));
-
-	    $result = '<a href="/?' . $query . '">Entfernen</a>';
-		return $result;
+		return null;
 	}
 }

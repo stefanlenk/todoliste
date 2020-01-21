@@ -25,7 +25,7 @@ class ShowTodoList extends Controller
 		$todo = new Todo();
 
 		$todo->setTodoId(1);
-		$todo->setInhalt('Todo Liste erstellen wenn 4 < 2');
+		$todo->setInhalt('Todo Liste erstellen');
 		$todo->setIstErledigt(true);
 		$todo->setErstelltUm('2020-01-20 14:28:43');
 		$todo->setAktualisiertUm($todo->getErstelltUm());

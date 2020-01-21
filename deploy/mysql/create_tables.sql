@@ -18,12 +18,12 @@ USE `todoliste`;
 
 -- Exportiere Struktur von Tabelle todoliste.todo
 CREATE TABLE IF NOT EXISTS `todo` (
-  `todo_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `inhalt` text NOT NULL,
-  `ist_erledigt` tinyint(3) unsigned NOT NULL,
-  `erstellt_um` datetime NOT NULL,
-  `aktualisiert_um` datetime NOT NULL,
-  PRIMARY KEY (`todo_id`)
+                                      `todo_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+                                      `inhalt` text NOT NULL,
+                                      `ist_erledigt` tinyint(3) unsigned NOT NULL,
+                                      `erstellt_um` datetime NOT NULL,
+                                      `aktualisiert_um` datetime NOT NULL,
+                                      PRIMARY KEY (`todo_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Daten Export vom Benutzer nicht ausgewählt
