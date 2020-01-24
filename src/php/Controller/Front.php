@@ -32,7 +32,7 @@ class Front extends Controller
 		}
 
 		/** @var Controller $controller */
-		$controller = new $controllerClassName($this->request);
+		$controller = new $controllerClassName($this->setup, $this->request);
 		$controller->handleRequest();
 		$this->response = $controller->getResponse();
 	}
