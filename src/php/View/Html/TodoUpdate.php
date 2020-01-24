@@ -7,7 +7,7 @@ use Application\Model\Input\Task;
 use Application\Model\Todo;
 use Application\View\Html;
 
-class TodoRow extends Html
+class TodoUpdate extends Html
 {
 	/** @var array */
 	protected $todos;
@@ -82,40 +82,9 @@ class TodoRow extends Html
 	protected function htmlAktionen($todo)
 	{
 		return /*$this->htmlAktionAnzeigen($todo)
-			.*/ $this->htmlAktionBearbeiten($todo)
-			. $this->htmlAktionEntfernen($todo)
+			. $this->htmlAktionBearbeiten($todo)
+			.*/ $this->htmlAktionEntfernen($todo)
             . $this->htmlAktionStartseite($todo);
-	}
-
-	/**
-	 * @param Todo $todo
-	 * @return string
-	 */
-	/*protected function htmlAktionAnzeigen($todo)
-	{
-		$query = http_build_query(array(
-			Name::Task => Task::ShowTodo,
-			Name::TodoId => $todo->getTodoId(),
-
-		));
-
-		$result = '<a href="/?' . $query . '">Anzeigen</a>';
-		return $result;
-	}*/
-
-	/**
-	 * @param Todo $todo
-	 * @return string
-	 */
-	protected function htmlAktionBearbeiten($todo)
-	{
-		$query = http_build_query(array(
-		    Name::Task => Task::UpdateTodo,
-            Name::TodoId => $todo->getTodoId(),
-        ));
-
-		$result = '<a href="/?' . $query . '">Bearbeiten</a>';
-		return $result;
 	}
 
 	/**

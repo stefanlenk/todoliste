@@ -9,7 +9,6 @@ use Application\View\Html\Page\Update;
 
 class UpdateTodo extends Controller
 {
-
 	public function handleRequest()
 	{
         $todos = $this->modelTodos();

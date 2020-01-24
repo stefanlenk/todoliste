@@ -24,10 +24,10 @@ class ShowTodo extends Controller
     {
         $todo = new Todo();
 
-        $todo->setTodoId(1);
-        $todo->setInhalt('Todo Liste erstellen');
+        $todo->setTodoId(2);
+        $todo->setInhalt('Todo Liste erstellt');
         $todo->setIstErledigt(false);
-        $todo->setErstelltUm('2020-01-20 14:28:43');
+        $todo->setErstelltUm('2020-01-23 14:28:43');
         $todo->setAktualisiertUm($todo->getErstelltUm());
 
         return array(
