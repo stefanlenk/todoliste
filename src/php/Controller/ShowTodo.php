@@ -13,24 +13,22 @@ class ShowTodo extends Controller
 {
 	public function handleRequest()
 	{
-		$todos = $this->modelTodo();
-		$view = new TodoSingle($todos);
+		$todo = $this->modelTodo();
+		$view = new TodoSingle($todo);
 		$view->render();
 		$this->response = new Html($view->getHtml());
 	}
 
 	/**
-	 * @return array
+	 * @return object
 	 */
 	protected function modelTodo()
 	{
 		$connection = $this->setup->databaseConnection();
 		$storage = new Database($connection);
 		$todoId = $this->request->valueOfParameter(Name::TodoId);
-		$todo = $storage->getTodo($todoId);
+        $result = $storage->getTodo($todoId);
 
-		return array(
-			$todo,
-		);
+		return $result;
 	}
 }

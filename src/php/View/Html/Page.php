@@ -2,6 +2,8 @@
 
 namespace Application\View\Html;
 
+use Application\Model\Input\Name;
+use Application\Model\Input\Task;
 use Application\View\Html;
 
 abstract class Page extends Html
@@ -17,6 +19,9 @@ abstract class Page extends Html
 				<title>' . $this->htmlPageTitle() . ' | ToDo-Liste</title>
 			  </head>
 			  <body>
+			  <nav>
+			  <li>' . $this->htmlAktionHomepage() . '</li>
+              </nav>
 			  ' . $this->htmlBody() . '
 			  </body>
 			</html>';
@@ -31,4 +36,14 @@ abstract class Page extends Html
 	 * @return string|null
 	 */
 	abstract protected function htmlBody();
+
+    protected function htmlAktionHomepage()
+    {
+        $query = http_build_query(array(
+            Name::Task => Task::ShowTodoList
+        ));
+
+        $result = '<a href="/?' . $query . '">Todo-Liste</a>';
+        return $result;
+    }
 }

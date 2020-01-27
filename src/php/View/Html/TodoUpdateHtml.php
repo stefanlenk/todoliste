@@ -7,17 +7,17 @@ use Application\Model\Input\Task;
 use Application\Model\Todo;
 use Application\View\Html;
 
-class TodoUpdate extends Html
+class TodoUpdateHtml extends Html
 {
-	/** @var array */
-	protected $todos;
+	/** @var object */
+	protected $todo;
 
 	/**
-	 * @param array $todos
+	 * @param object $todo
 	 */
-	public function __construct($todos)
+	public function __construct($todo)
 	{
-		$this->todos = $todos;
+		$this->todo = $todo;
 	}
 
 	public function render()
@@ -32,28 +32,11 @@ class TodoUpdate extends Html
 					</tr>
 				</thead>
 				<tbody>
-					' . $this->htmlTableRows() . '
+					' . $this->htmlTableRow($this->todo) . '
 				</tbody>
 			</table>';
 	}
 
-	/**
-	 * @return string|null
-	 */
-	protected function htmlTableRows()
-	{
-		$result = null;
-
-		foreach($this->todos as $todo)
-			$result = $this->htmlTableRow($todo);
-
-		return $result;
-	}
-
-	/**
-	 * @param Todo $todo
-	 * @return string
-	 */
 	protected function htmlTableRow($todo)
 	{
 		return
@@ -81,10 +64,8 @@ class TodoUpdate extends Html
 	 */
 	protected function htmlAktionen($todo)
 	{
-		return /*$this->htmlAktionAnzeigen($todo)
-			. $this->htmlAktionBearbeiten($todo)
-			.*/ $this->htmlAktionEntfernen($todo)
-            . $this->htmlAktionStartseite($todo);
+		return $this->htmlAktionEntfernen($todo)
+            . $this->htmlAktionSpeichern($todo);
 	}
 
 	/**
@@ -102,13 +83,14 @@ class TodoUpdate extends Html
 		return $result;
 	}
 
-	protected function htmlAktionStartseite($todo)
+	protected function htmlAktionSpeichern($todo)
     {
         $query = http_build_query(array(
-            Name::Task => Task::ShowTodoList
+            Name::Task => Task::UpdateTodo,
+            Name::TodoId => $todo->updateTodo(),
         ));
 
-        $result = '<a href="/?' . $query . '">Startseite</a>';
+        $result = '<a href="/?' . $query . '">Speichern</a>';
         return $result;
     }
 }

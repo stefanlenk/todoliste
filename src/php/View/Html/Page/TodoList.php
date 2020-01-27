@@ -3,7 +3,7 @@
 namespace Application\View\Html\Page;
 
 use Application\View\Html\Page;
-use Application\View\Html\TodoTabelle;
+use Application\View\Html\TodoListHtml;
 
 class TodoList extends Page
 {
@@ -33,7 +33,7 @@ class TodoList extends Page
 
 	protected function htmlTodoTabelle()
 	{
-		$view = new TodoTabelle($this->todos);
+		$view = new TodoListHtml($this->todos);
 		$view->render();
 		$result = $view->getHtml();
 		return $result;

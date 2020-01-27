@@ -3,11 +3,11 @@
 namespace Application\View\Html\Page;
 
 use Application\View\Html\Page;
-use Application\View\Html\TodoRow;
+use Application\View\Html\TodoSingleHtml;
 
 class TodoSingle extends Page
 {
-    /** @var array */
+    /** @var object */
     protected $todo;
 
     /**
@@ -30,7 +30,7 @@ class TodoSingle extends Page
 
     protected function htmlTodoRow()
     {
-        $view = new TodoRow($this->todo);
+        $view = new TodoSingleHtml($this->todo);
         $view->render();
         $result = $view->getHtml();
         return $result;

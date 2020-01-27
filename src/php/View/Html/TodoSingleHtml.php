@@ -7,61 +7,48 @@ use Application\Model\Input\Task;
 use Application\Model\Todo;
 use Application\View\Html;
 
-class TodoTabelle extends Html
+class TodoSingleHtml extends Html
 {
-	/** @var array */
-	protected $todos;
+    /** @var object */
+    protected $todo;
 
-	/**
-	 * @param array $todos
+    /**
+	 * @param object $todo
 	 */
-	public function __construct($todos)
+	public function __construct($todo)
 	{
-		$this->todos = $todos;
+		$this->todo = $todo;
 	}
 
 	public function render()
 	{
 		$this->html =
 			'<table>
-				<thead>
-					<tr>
-						<th>Inhalt</th>
-						<th>Erledigt</th>
-						<th>Aktionen</th>
-					</tr>
-				</thead>
 				<tbody>
-					' . $this->htmlTableRows() . '
+					' . $this->htmlTableRow($this->todo) . '
 				</tbody>
 			</table>';
 	}
 
-	/**
-	 * @return string|null
-	 */
-	protected function htmlTableRows()
-	{
-		$result = null;
-
-		foreach($this->todos as $todo)
-			$result .= $this->htmlTableRow($todo);
-
-		return $result;
-	}
-
-	/**
-	 * @param Todo $todo
-	 * @return string
-	 */
 	protected function htmlTableRow($todo)
 	{
 		return
 			'<tr>
+                <th>Inhalt:</th>
 				<td>' . htmlspecialchars($todo->getInhalt()) . '</td>
-				<td>' . $this->htmlIstErledigt($todo) . '</td>
-				<td>' . $this->htmlAktionen($todo) . '</td>
-			</tr>';
+			</tr>
+            <tr>
+                <th>Erledigt:</th>
+                <td>' . $this->htmlIstErledigt($todo) . '</td>  
+            </tr>
+            <tr>
+                <th>Erstellungsdatum:</th>
+                <td>' . htmlspecialchars($todo->getErstelltUm()) . '</td>  
+            </tr>
+			<tr>
+                <th>Aktionen:</th>
+                <td>' . $this->htmlAktionen($todo) . '</td>
+            </tr>';
 	}
 
 	/**
@@ -81,8 +68,7 @@ class TodoTabelle extends Html
 	 */
 	protected function htmlAktionen($todo)
 	{
-		return $this->htmlAktionAnzeigen($todo)
-			. $this->htmlAktionBearbeiten($todo)
+		return $this->htmlAktionBearbeiten($todo)
 			. $this->htmlAktionEntfernen($todo);
 	}
 
@@ -90,7 +76,7 @@ class TodoTabelle extends Html
 	 * @param Todo $todo
 	 * @return string
 	 */
-	protected function htmlAktionAnzeigen($todo)
+	/*protected function htmlAktionAnzeigen($todo)
 	{
 		$query = http_build_query(array(
 			Name::Task => Task::ShowTodo,
@@ -100,7 +86,7 @@ class TodoTabelle extends Html
 
 		$result = '<a href="/?' . $query . '">Anzeigen</a>';
 		return $result;
-	}
+	}*/
 
 	/**
 	 * @param Todo $todo
@@ -124,11 +110,11 @@ class TodoTabelle extends Html
 	protected function htmlAktionEntfernen($todo)
 	{
 	    $query = http_build_query(array(
-	       Name::Task => Task::DeleteTodo,
-           Name::TodoId => $todo->getTodoId(),
+	        Name::Task => Task::DeleteTodo,
+            Name::TodoId => $todo->getTodoId(),
         ));
 
-	    $result = '<a href="/?' . $query . '">Entfernen</a>';
+        $result = '<a href="/?' . $query . '">Entfernen</a>';
 		return $result;
 	}
 }

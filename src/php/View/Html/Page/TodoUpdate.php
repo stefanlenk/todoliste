@@ -3,19 +3,19 @@
 namespace Application\View\Html\Page;
 
 use Application\View\Html\Page;
-use Application\View\Html\TodoRow;
+use Application\View\Html\TodoUpdateHtml;
 
-class Update extends Page
+class TodoUpdate extends Page
 {
-	/** @var array */
-	protected $todos;
+	/** @var object */
+	protected $todo;
 
 	/**
-	 * @param array $todos
+	 * @param $todo
 	 */
-	public function __construct($todos)
+	public function __construct($todo)
 	{
-		$this->todos = $todos;
+		$this->todo = $todo;
 	}
 
 	protected function htmlPageTitle()
@@ -28,12 +28,12 @@ class Update extends Page
 	 */
 	protected function htmlBody()
 	{
-		return $this->htmlTodoZeile();
+		return $this->htmlTodoUpdate();
 	}
 
-	protected function htmlTodoZeile()
+	protected function htmlTodoUpdate()
 	{
-		$view = new TodoRow($this->todos);
+		$view = new TodoUpdateHtml($this->todo);
 		$view->render();
 		$result = $view->getHtml();
 		return $result;

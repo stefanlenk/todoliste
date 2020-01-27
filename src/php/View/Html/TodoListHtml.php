@@ -7,7 +7,7 @@ use Application\Model\Input\Task;
 use Application\Model\Todo;
 use Application\View\Html;
 
-class TodoRow extends Html
+class TodoListHtml extends Html
 {
 	/** @var array */
 	protected $todos;
@@ -45,7 +45,7 @@ class TodoRow extends Html
 		$result = null;
 
 		foreach($this->todos as $todo)
-			$result = $this->htmlTableRow($todo);
+			$result .= $this->htmlTableRow($todo);
 
 		return $result;
 	}
@@ -81,17 +81,16 @@ class TodoRow extends Html
 	 */
 	protected function htmlAktionen($todo)
 	{
-		return /*$this->htmlAktionAnzeigen($todo)
-			.*/ $this->htmlAktionBearbeiten($todo)
-			. $this->htmlAktionEntfernen($todo)
-            . $this->htmlAktionStartseite($todo);
+		return $this->htmlAktionAnzeigen($todo)
+			. $this->htmlAktionBearbeiten($todo)
+			. $this->htmlAktionEntfernen($todo);
 	}
 
 	/**
 	 * @param Todo $todo
 	 * @return string
 	 */
-	/*protected function htmlAktionAnzeigen($todo)
+	protected function htmlAktionAnzeigen($todo)
 	{
 		$query = http_build_query(array(
 			Name::Task => Task::ShowTodo,
@@ -101,7 +100,7 @@ class TodoRow extends Html
 
 		$result = '<a href="/?' . $query . '">Anzeigen</a>';
 		return $result;
-	}*/
+	}
 
 	/**
 	 * @param Todo $todo
@@ -125,21 +124,11 @@ class TodoRow extends Html
 	protected function htmlAktionEntfernen($todo)
 	{
 	    $query = http_build_query(array(
-	        Name::Task => Task::DeleteTodo,
-            Name::TodoId => $todo->getTodoId(),
+	       Name::Task => Task::DeleteTodo,
+           Name::TodoId => $todo->getTodoId(),
         ));
 
-        $result = '<a href="/?' . $query . '">Entfernen</a>';
+	    $result = '<a href="/?' . $query . '">Entfernen</a>';
 		return $result;
 	}
-
-	protected function htmlAktionStartseite($todo)
-    {
-        $query = http_build_query(array(
-            Name::Task => Task::ShowTodoList
-        ));
-
-        $result = '<a href="/?' . $query . '">Startseite</a>';
-        return $result;
-    }
 }

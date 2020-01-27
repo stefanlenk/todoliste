@@ -3,35 +3,31 @@
 namespace Application\Controller;
 
 use Application\Controller;
+use Application\Model\Input\Name;
 use Application\Model\Response\Html;
-use Application\Model\Todo;
-use Application\View\Html\Page\Update;
+use Application\Model\Storage\Database;
+use Application\View\Html\Page\TodoUpdate;
 
 class UpdateTodo extends Controller
 {
 	public function handleRequest()
 	{
-        $todos = $this->modelTodos();
-        $view = new Update($todos);
+        $todo = $this->modelTodo();
+        $view = new TodoUpdate($todo);
         $view->render();
 		$this->response = new Html($view->getHtml());
 	}
 
     /**
-     * @return array
+     * @return object
      */
-    protected function modelTodos()
+    protected function modelTodo()
     {
-        $todo = new Todo();
+        $connection = $this->setup->databaseConnection();
+        $storage = new Database($connection);
+        $todo = $this->request->valueOfParameter(Name::TodoId);
+        $result = $storage->updateTodo($todo);
 
-        $todo->setTodoId(1);
-        $todo->setInhalt('Todo Liste erstellt');
-        $todo->setIstErledigt(true);
-        $todo->setErstelltUm('2020-01-21 12:19:36');
-        $todo->setAktualisiertUm($todo->getErstelltUm());
-
-        return Array(
-            $todo,
-        );
+        return  $result;
     }
 }
