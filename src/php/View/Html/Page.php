@@ -19,10 +19,9 @@ abstract class Page extends Html
 				<title>' . $this->htmlPageTitle() . ' | ToDo-Liste</title>
 			  </head>
 			  <body>
-			  <nav>
-			  <li>' . $this->htmlAktionHomepage() . '</li>
-              </nav>
-			  ' . $this->htmlBody() . '
+			  <li>' . $this->htmlAktionHomepage() . '</li>              
+			  ' . $this->htmlBody() . '			  
+			  <li>' . $this->htmlAktionCreate() . '</li>
 			  </body>
 			</html>';
 	}
@@ -44,6 +43,16 @@ abstract class Page extends Html
         ));
 
         $result = '<a href="/?' . $query . '">Todo-Liste</a>';
+        return $result;
+    }
+
+    protected function htmlAktionCreate()
+    {
+        $query = http_build_query(array(
+            Name::Task => Task::CreateTodo
+        ));
+
+        $result = '<a href="/?' . $query . '">Todo anlegen</a>';
         return $result;
     }
 }

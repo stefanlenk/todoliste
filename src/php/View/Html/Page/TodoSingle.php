@@ -2,16 +2,17 @@
 
 namespace Application\View\Html\Page;
 
+use Application\Model\Todo;
 use Application\View\Html\Page;
 use Application\View\Html\TodoSingleHtml;
 
 class TodoSingle extends Page
 {
-    /** @var object */
+    /** @var Todo */
     protected $todo;
 
     /**
-     * @param $todo
+     * @param Todo $todo
      */
     public function __construct($todo)
     {

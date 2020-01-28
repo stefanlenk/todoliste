@@ -65,17 +65,24 @@ class Database extends Storage
 	 */
 	public function createTodo($todo)
 	{
-        $todoId = $todo->getTodoId();
+        /*$todoId = $todo->getTodoId();
         $inhalt = $todo->getInhalt();
         $erledigt = $todo->getIstErledigt();
         $erstellt = $todo->getErstelltUm();
-        $aktualisiert = $todo->getdate();
+        $aktualisiert = $todo->getdate();*/
 
         $sql =  'INSERT INTO todo 
-                    {todo_id, inhalt, ist_erledigt, erstellt_um, aktualisiert_um}
-                    VALUES {:todo_id, :inhalt, :ist_erledigt, :erstellt_um, :aktualisiert_um}';
+                    (todo-id, inhalt, ist_erledigt, erstellt_um, aktualisiert_um)
+                    VALUES (:todo_id, :inhalt, :ist_erledigt, :erstellt_um, :aktualisiert_um)';
 
         $statement = $this->connection->exec($sql);
+        $statement->execute(array(
+            ':todo_id' => $todo->getTodoId(),
+            ':inhalt' => $todo->getInhalt(),
+            ':ist_erledigt' => $todo->getIstErledigt(),
+            ':erstellt_um' => $todo->getErstelltUm(),
+            ':aktualisiert_um' => $todo->getAktualisiertUm(),
+        ));
 	}
 
 	/**
@@ -83,23 +90,23 @@ class Database extends Storage
 	 */
 	public function updateTodo($todo)
     {
-        $todoId = $todo->getTodoId();
+        /*$todoId = $todo->getTodoId();
         $inhalt = $todo->getInhalt();
         $erledigt = $todo->getIstErledigt();
         $erstellt = $todo->getErstelltUm();
-        $aktualisiert = $todo->getdate();
+        $aktualisiert = $todo->getdate();*/
         $todo = new Todo();
-        $sql = 'UPDATE todo SET todo_id= NULL, inhalt= :inhalt, ist_erledigt= :ist_erledigt,
-                    erstellt_um = : erstellt_um, aktualisiert_um = :aktualisiert_um
+        $sql = 'UPDATE todo SET todo-id= NULL, inhalt= :inhalt, ist_erledigt= :ist_erledigt,
+                    erstellt_um = :erstellt_um, aktualisiert_um = :aktualisiert_um
                     WHERE todo_id = :todo_id';
         $statement = $this->connection->prepare($sql);
 
         $statement->execute(array(
-            Name::TodoId => $todo->getTodoId(),
-            Name::Inhalt => $todo->getInhalt(),
-            Name::Erledigt => $todo->getIstErledigt(),
-            Name::Erstellt => $todo->getErstelltUm(),
-            Name::Aktualisiert => $todo->getAktualisiertUm(),
+            ':todo_id' => $todo->getTodoId(),
+            ':inhalt' => $todo->getInhalt(),
+            ':ist_erledigt' => $todo->getIstErledigt(),
+            ':erstellt_um' => $todo->getErstelltUm(),
+            ':aktualisiert_um' => $todo->getAktualisiertUm(),
         ));
 
         $result = $statement->fetch(PDO::FETCH_ASSOC);

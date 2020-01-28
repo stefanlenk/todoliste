@@ -9,7 +9,10 @@ class CreateTodo extends Controller
 {
 	public function handleRequest()
 	{
-		var_dump(__CLASS__);
+	    if($this->request->methodLowercased() == 'get');
+
+		$todo = $this->modelTodo();
+		$view = new TodoCreate($todo);
 		$this->response = new Html(null);
 	}
 }

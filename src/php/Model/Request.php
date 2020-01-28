@@ -6,13 +6,17 @@ class Request
 {
 	/** @var array */
 	protected $parameters;
+	/** @var string */
+	protected $method;
 
-	/**
-	 * @param array $parameters
-	 */
-	public function __construct($parameters)
+    /**
+     * @param array $parameters
+     * @param string $method
+     */
+	public function __construct($parameters, $method)
 	{
 		$this->parameters = $parameters;
+		$this->method = $method;
 	}
 
 	/**
@@ -26,4 +30,12 @@ class Request
 			? $this->parameters[$name]
 			: $defaultValue;
 	}
+
+    /**
+     * @return string
+     */
+    public function methodLowercased()
+    {
+        return strtolower($this->method);
+    }
 }

@@ -9,4 +9,5 @@ class Task
 	const ShowTodo = 'show-todo';
 	const ShowTodoList = 'show-todo-list';
 	const UpdateTodo = 'update-todo';
+	const Create = 'create';
 }

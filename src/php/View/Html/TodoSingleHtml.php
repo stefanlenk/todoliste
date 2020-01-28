@@ -25,12 +25,12 @@ class TodoSingleHtml extends Html
 		$this->html =
 			'<table>
 				<tbody>
-					' . $this->htmlTableRow($this->todo) . '
+					' . $this->htmlTableSingle($this->todo) . '
 				</tbody>
 			</table>';
 	}
 
-	protected function htmlTableRow($todo)
+	protected function htmlTableSingle($todo)
 	{
 		return
 			'<tr>
