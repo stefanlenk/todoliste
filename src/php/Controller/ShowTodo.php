@@ -8,7 +8,6 @@ use Application\Model\Response\Html;
 use Application\Model\Storage\Database;
 use Application\View\Html\Page\TodoSingle;
 
-// Todo nur ein Todo verarbeiten
 class ShowTodo extends Controller
 {
 	public function handleRequest()

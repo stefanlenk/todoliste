@@ -20,7 +20,17 @@ class TodoUpdateHtml extends Html
 		$this->todo = $todo;
 	}
 
-	public function render()
+    public function render()
+    {
+        $this->html =
+            '<table>
+				<tbody>
+					' . $this->htmlTableSingle($this->todo) . '
+				</tbody>
+			</table>';
+    }
+
+	/*public function render()
 	{
 		$this->html =
 			'<table>
@@ -35,8 +45,27 @@ class TodoUpdateHtml extends Html
 					' . $this->htmlTableRow($this->todo) . '
 				</tbody>
 			</table>';
-	}
-
+	}*/
+    protected function htmlTableSingle($todo)
+    {
+        return
+            '<tr>
+                <th>Inhalt:</th>
+				<td>' . htmlspecialchars($todo->getInhalt()) . '</td>
+			</tr>
+            <tr>
+                <th>Erledigt:</th>
+                <td>' . $this->htmlIstErledigt($todo) . '</td>  
+            </tr>
+            <tr>
+                <th>Erstellungsdatum:</th>
+                <td>' . htmlspecialchars($todo->getErstelltUm()) . '</td>  
+            </tr>
+			<tr>
+                <th>Aktionen:</th>
+                <td>' . $this->htmlAktionen($todo) . '</td>
+            </tr>';
+    }
 	protected function htmlTableRow($todo)
 	{
 		return

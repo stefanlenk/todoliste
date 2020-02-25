@@ -27,7 +27,7 @@ class TodoCreateHtml extends Html
 			</form>';
      }
 
-     protected function htmlCreateTodo()
+     protected function htmlCreateTodo($todo)
      {
          return
             '<label for ' . Name::Inhalt . '>Inhalt</label>

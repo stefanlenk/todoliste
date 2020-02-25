@@ -76,22 +76,6 @@ class TodoSingleHtml extends Html
 	 * @param Todo $todo
 	 * @return string
 	 */
-	/*protected function htmlAktionAnzeigen($todo)
-	{
-		$query = http_build_query(array(
-			Name::Task => Task::ShowTodo,
-			Name::TodoId => $todo->getTodoId(),
-
-		));
-
-		$result = '<a href="/?' . $query . '">Anzeigen</a>';
-		return $result;
-	}*/
-
-	/**
-	 * @param Todo $todo
-	 * @return string
-	 */
 	protected function htmlAktionBearbeiten($todo)
 	{
 		$query = http_build_query(array(

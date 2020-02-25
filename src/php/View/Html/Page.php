@@ -19,7 +19,7 @@ abstract class Page extends Html
 				<title>' . $this->htmlPageTitle() . ' | ToDo-Liste</title>
 			  </head>
 			  <body>
-			  <li>' . $this->htmlAktionHomepage() . '</li>              
+			  <li>' . $this->htmlAktionHomepage() . '</li>    //TODO li ändern          
 			  ' . $this->htmlBody() . '			  
 			  <li>' . $this->htmlAktionCreate() . '</li>
 			  </body>

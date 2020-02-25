@@ -65,12 +65,7 @@ class Database extends Storage
 	 */
 	public function createTodo($todo)
 	{
-        /*$todoId = $todo->getTodoId();
-        $inhalt = $todo->getInhalt();
-        $erledigt = $todo->getIstErledigt();
-        $erstellt = $todo->getErstelltUm();
-        $aktualisiert = $todo->getdate();*/
-
+        $todo = new Todo();
         $sql =  'INSERT INTO todo 
                     (todo-id, inhalt, ist_erledigt, erstellt_um, aktualisiert_um)
                     VALUES (:todo_id, :inhalt, :ist_erledigt, :erstellt_um, :aktualisiert_um)';
@@ -90,11 +85,6 @@ class Database extends Storage
 	 */
 	public function updateTodo($todo)
     {
-        /*$todoId = $todo->getTodoId();
-        $inhalt = $todo->getInhalt();
-        $erledigt = $todo->getIstErledigt();
-        $erstellt = $todo->getErstelltUm();
-        $aktualisiert = $todo->getdate();*/
         $todo = new Todo();
         $sql = 'UPDATE todo SET todo-id= NULL, inhalt= :inhalt, ist_erledigt= :ist_erledigt,
                     erstellt_um = :erstellt_um, aktualisiert_um = :aktualisiert_um
@@ -117,7 +107,13 @@ class Database extends Storage
 	 */
 	public function deleteTodo($todoId)
 	{
-		// TODO: Implement deleteTodo() method.
+        $todo = new Todo();
+        $sql = 'DELETE FROM todo WHERE todo_id = :todo_id';
+        $statement = $this->connection->prepare($sql);
+        $statement->execute(array(':todo_id' => $todo->getTodoId()));
+
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        return $result;
 	}
 
 	/**

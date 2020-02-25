@@ -25,8 +25,8 @@ class UpdateTodo extends Controller
     {
         $connection = $this->setup->databaseConnection();
         $storage = new Database($connection);
-        $todo = $this->request->valueOfParameter(Name::TodoId);
-        $result = $storage->updateTodo($todo);
+        $todoId = $this->request->valueOfParameter(Name::TodoId);
+        $result = $storage->updateTodo($todoId);
 
         return  $result;
     }
