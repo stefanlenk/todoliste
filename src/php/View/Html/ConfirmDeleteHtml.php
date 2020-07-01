@@ -7,7 +7,7 @@ use Application\Model\Input\Task;
 use Application\Model\Todo;
 use Application\View\Html;
 
-class TodoDeleteHtml extends Html
+class ConfirmDeleteHtml extends Html
 {
     /** @var object */
     protected $todo;
@@ -25,7 +25,7 @@ class TodoDeleteHtml extends Html
         $this->html =
             '<table>
 				<tbody>
-					' . $this->htmlDelete() . '
+					' . $this->htmlDelete($this->todo) . '
 				</tbody>
 			</table>';
     }
@@ -34,26 +34,19 @@ class TodoDeleteHtml extends Html
     {
         return
         '<tr>
-            <td>Sind Sie sicher?</td>
+            <td>Zu spät</td>
             <td>
-                ' . $this->htmlAktionen($todo) . '
+                <button name="Task" value="' . Task::ConfirmDelete .'">Endgültig löschen</button>
             </td>
         </tr>';
     }
 
-    protected function htmlAktionen($todo)
-    {
-        return $this->htmlAktionEntfernen($todo);
-    }
-
-    protected function htmlAktionEntfernen($todo)
+    protected function confirmDelete($todo)
     {
         $query = http_build_query(array(
             Name::Task => Task::ConfirmDelete,
-            /*Name::TodoId => $todo->getTodoId(),*/
+            Name::TodoId => $todo->getTodoId(),
         ));
-
-        $result = '<a href="/?' . $query . '">Endgültig löschen</a>';
-        return $result;
+        $result = '<a herf="/?' . $query . '">endgültig löschen</a>';
     }
 }

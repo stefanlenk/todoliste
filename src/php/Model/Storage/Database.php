@@ -78,6 +78,9 @@ class Database extends Storage
             ':erstellt_um' => $todo->getErstelltUm(),
             ':aktualisiert_um' => $todo->getAktualisiertUm(),
         ));
+
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        return $result;
 	}
 
 	/**

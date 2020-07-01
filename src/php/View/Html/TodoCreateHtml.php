@@ -30,10 +30,11 @@ class TodoCreateHtml extends Html
      protected function htmlCreateTodo($todo)
      {
          return
-            '<label for ' . Name::Inhalt . '>Inhalt</label>
-            <input id="Inhalt" name="Inhalt">
-            <button name="Task" value="' . Task::Create .'">speichern</button>
-            
+            '<label for ' . Name::Inhalt . '>Inhalt:
+            <input id="Inhalt" name="Inhalt"></label>
+            <label for ' . Name::Erledigt . '>Erledigt:
+            <input id="Erledigt" name="Erledigt"></label>
+            <button name="Task" value="' . Task::CreateTodo .'">speichern</button>      
             ';
      }
 }

@@ -29,6 +29,9 @@ class Front extends Controller
 			default:
 				$controllerClassName = ShowTodoList::class;
 				break;
+            case Task::ConfirmDelete:
+                $controllerClassName = ConfirmDelete::class;
+                break;
 		}
 
 		/** @var Controller $controller */
