@@ -23,7 +23,8 @@ class TodoListHtml extends Html
     public function render()
     {
         $this->html =
-            '<thead>
+            '<table>
+<thead>
 				<tr>
 					<th>Inhalt</th>
 					<th>Erledigt</th>
@@ -38,6 +39,7 @@ class TodoListHtml extends Html
                     <td></td>
                 </tr> 
 			</tbody>
+			</table>
 			';
     }
 

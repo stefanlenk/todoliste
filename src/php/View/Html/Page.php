@@ -19,9 +19,9 @@ abstract class Page extends Html
 				<title>' . $this->htmlPageTitle() . ' | ToDo-Liste</title>
 			  </head>
 			  ' . $this->htmlAktionHomepage() . '			  
-			  <table>		            
+			  		            
 			  ' . $this->htmlBody() . '
-			  </table>
+			  
 			</html>';
 	}
 

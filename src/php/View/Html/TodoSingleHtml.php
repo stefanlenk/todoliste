@@ -23,12 +23,14 @@ class TodoSingleHtml extends Html
 	public function render()
 	{
 		$this->html =
-			'<tbody>
+			'<table><tbody>
 				' . $this->htmlTableSingle($this->todo) . '
 			</tbody>
+			</table>
 			';
 	}
 
+	// Todo ToDo anlegen benönigt zwei Zellen in der Tabelle
 	protected function htmlTableSingle($todo)
 	{
 		return
@@ -49,7 +51,7 @@ class TodoSingleHtml extends Html
                 <td>' . $this->htmlAktionen($todo) . '</td>
             </tr>
             <tr>                			  
-			    <td>' . $this->htmlAktionCreate() . '</td>            
+			    <td colspan="2">' . $this->htmlAktionCreate() . '</td>            
             </tr>'
             ;
 	}

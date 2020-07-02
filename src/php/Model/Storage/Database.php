@@ -65,22 +65,16 @@ class Database extends Storage
 	 */
 	public function createTodo($todo)
 	{
-        $todo = new Todo();
         $sql =  'INSERT INTO todo 
-                    (todo-id, inhalt, ist_erledigt, erstellt_um, aktualisiert_um)
-                    VALUES (:todo_id, :inhalt, :ist_erledigt, :erstellt_um, :aktualisiert_um)';
+                    (inhalt, ist_erledigt, erstellt_um, aktualisiert_um)
+                    VALUES (:inhalt, :ist_erledigt, NOW(), NOW())';
 
-        $statement = $this->connection->exec($sql);
+        $statement = $this->connection->prepare($sql);
+
         $statement->execute(array(
-            ':todo_id' => $todo->getTodoId(),
             ':inhalt' => $todo->getInhalt(),
             ':ist_erledigt' => $todo->getIstErledigt(),
-            ':erstellt_um' => $todo->getErstelltUm(),
-            ':aktualisiert_um' => $todo->getAktualisiertUm(),
         ));
-
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-        return $result;
 	}
 
 	/**
@@ -89,7 +83,7 @@ class Database extends Storage
 	public function updateTodo($todo)
     {
         $todo = new Todo();
-        $sql = 'UPDATE todo SET todo-id= NULL, inhalt= :inhalt, ist_erledigt= :ist_erledigt,
+        $sql = 'UPDATE todo SET todo_id= NULL, inhalt= :inhalt, ist_erledigt= :ist_erledigt,
                     erstellt_um = :erstellt_um, aktualisiert_um = :aktualisiert_um
                     WHERE todo_id = :todo_id';
         $statement = $this->connection->prepare($sql);
