@@ -19,26 +19,29 @@ class TodoCreateHtml extends Html
     {
         $this->todo = $todo;
     }
-     public function render()
-     {
+
+    public function render()
+    {
         $this->html =
-         '<form action="" method="post">
-				' . $this->htmlCreateTodo($this->todo) . '				
-			</form>';
-     }
+            '<form method="post">
+				<p>' . $this->htmlCreateTodo($this->todo) . '</p>			
+		 </form>';
+    }
 
     /**
      * @param Todo $todo
      * @return string
      */
     protected function htmlCreateTodo($todo)
-     {
-         return
+    {
+        return
             '<label for="Inhalt">Inhalt:</label>
-            <input id="Inhalt" name="' . Name::Inhalt . '" value="' . htmlspecialchars($todo->getInhalt()) . '">
+            <input id="Inhalt" name="' . Name::Inhalt . '"
+             value="' . htmlspecialchars($todo->getInhalt()) . '">
             <label for="Erledigt">Erledigt:
-            <input id="Erledigt" name="' . Name::Erledigt . '" value="' . htmlspecialchars($todo->getIstErledigt()) . '"></label>
-            <button name="Task" value="' . Task::CreateTodo .'">speichern</button>      
-            ';
-     }
+            <input id="Erledigt" name="' . Name::Erledigt . '"
+             value="' . htmlspecialchars($todo->getIstErledigt()) . '">
+            </label>
+            <button name="Task" value="' . Task::CreateTodo . '">speichern</button>';
+    }
 }

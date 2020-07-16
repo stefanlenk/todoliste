@@ -4,7 +4,6 @@ namespace Application\View\Html;
 
 use Application\Model\Input\Name;
 use Application\Model\Input\Task;
-use Application\Model\Todo;
 use Application\View\Html;
 
 class ConfirmDeleteHtml extends Html
@@ -24,8 +23,8 @@ class ConfirmDeleteHtml extends Html
     {
         $this->html =
             '<table>
-				<tbody>
-					' . $this->htmlDelete($this->todo) . '
+                <tbody>
+				' . $this->htmlDelete($this->todo) . '
 				</tbody>
 			</table>';
     }
@@ -33,20 +32,15 @@ class ConfirmDeleteHtml extends Html
     protected function htmlDelete($todo)
     {
         return
-        '<tr>
-            <td>Zu spät</td>
-            <td>
-                <button name="Task" value="' . Task::ConfirmDelete .'">Endgültig löschen</button>
-            </td>
-        </tr>';
+            '<tr><td>gelöscht</td></tr>';
     }
 
-    protected function confirmDelete($todo)
+    protected function htmlAktion($todo)
     {
         $query = http_build_query(array(
-            Name::Task => Task::ConfirmDelete,
-            Name::TodoId => $todo->getTodoId(),
+            Name::Task => Task::ShowTodoList,
         ));
-        $result = '<a herf="/?' . $query . '">endgültig löschen</a>';
+        $result = '<a herf="/?' . $query . '">zurück zur Übersicht</a>';
+        return $result;
     }
 }

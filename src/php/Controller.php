@@ -24,7 +24,6 @@ abstract class Controller
 	{
 		$this->setup = $setup;
 		$this->request = $request;
-
 		$this->response = null;
 	}
 

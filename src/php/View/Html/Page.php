@@ -20,8 +20,7 @@ abstract class Page extends Html
 			  </head>
 			  ' . $this->htmlAktionHomepage() . '			  
 			  		            
-			  ' . $this->htmlBody() . '
-			  
+			  ' . $this->htmlBody() . '			  
 			</html>';
 	}
 

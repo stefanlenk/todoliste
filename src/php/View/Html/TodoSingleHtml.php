@@ -13,28 +13,29 @@ class TodoSingleHtml extends Html
     protected $todo;
 
     /**
-	 * @param object $todo
-	 */
-	public function __construct($todo)
-	{
-		$this->todo = $todo;
-	}
+     * @param object $todo
+     */
+    public function __construct($todo)
+    {
+        $this->todo = $todo;
+    }
 
-	public function render()
-	{
-		$this->html =
-			'<table><tbody>
+    public function render()
+    {
+        $this->html =
+            '<table>
+                <tbody>
 				' . $this->htmlTableSingle($this->todo) . '
-			</tbody>
+			    </tbody>
 			</table>
 			';
-	}
+    }
 
-	// Todo ToDo anlegen benönigt zwei Zellen in der Tabelle
-	protected function htmlTableSingle($todo)
-	{
-		return
-			'<tr>
+    // Todo ToDo anlegen benönigt zwei Zellen in der Tabelle
+    protected function htmlTableSingle($todo)
+    {
+        return
+            '<tr>
                 <th>Inhalt:</th>
 				<td>' . htmlspecialchars($todo->getInhalt()) . '</td>
 			</tr>
@@ -52,60 +53,59 @@ class TodoSingleHtml extends Html
             </tr>
             <tr>                			  
 			    <td colspan="2">' . $this->htmlAktionCreate() . '</td>            
-            </tr>'
-            ;
-	}
+            </tr>';
+    }
 
-	/**
-	 * @param Todo $todo
-	 * @return string
-	 */
-	protected function htmlIstErledigt($todo)
-	{
-		return ($todo->getIstErledigt())
-			? 'Ja'
-			: 'Nein';
-	}
+    /**
+     * @param Todo $todo
+     * @return string
+     */
+    protected function htmlIstErledigt($todo)
+    {
+        return ($todo->getIstErledigt())
+            ? 'Ja'
+            : 'Nein';
+    }
 
-	/**
-	 * @param Todo $todo
-	 * @return string|null
-	 */
-	protected function htmlAktionen($todo)
-	{
-		return $this->htmlAktionBearbeiten($todo)
-			. $this->htmlAktionEntfernen($todo);
-	}
+    /**
+     * @param Todo $todo
+     * @return string|null
+     */
+    protected function htmlAktionen($todo)
+    {
+        return $this->htmlAktionBearbeiten($todo)
+            . $this->htmlAktionEntfernen($todo);
+    }
 
-	/**
-	 * @param Todo $todo
-	 * @return string
-	 */
-	protected function htmlAktionBearbeiten($todo)
-	{
-		$query = http_build_query(array(
-		    Name::Task => Task::UpdateTodo,
+    /**
+     * @param Todo $todo
+     * @return string
+     */
+    protected function htmlAktionBearbeiten($todo)
+    {
+        $query = http_build_query(array(
+            Name::Task => Task::UpdateTodo,
             Name::TodoId => $todo->getTodoId(),
         ));
 
-		$result = '<a href="/?' . $query . '">Bearbeiten</a>';
-		return $result;
-	}
+        $result = '<a href="/?' . $query . '">Bearbeiten</a>';
+        return $result;
+    }
 
-	/**
-	 * @param Todo $todo
-	 * @return string
-	 */
-	protected function htmlAktionEntfernen($todo)
-	{
-	    $query = http_build_query(array(
-	        Name::Task => Task::DeleteTodo,
+    /**
+     * @param Todo $todo
+     * @return string
+     */
+    protected function htmlAktionEntfernen($todo)
+    {
+        $query = http_build_query(array(
+            Name::Task => Task::DeleteTodo,
             Name::TodoId => $todo->getTodoId(),
         ));
 
         $result = '<a href="/?' . $query . '">Entfernen</a>';
-		return $result;
-	}
+        return $result;
+    }
 
     protected function htmlAktionCreate()
     {

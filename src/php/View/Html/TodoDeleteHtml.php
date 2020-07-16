@@ -24,33 +24,29 @@ class TodoDeleteHtml extends Html
     {
         $this->html =
             '<table>
-				<tbody>
-					' . $this->htmlDelete() . '
-				</tbody>
+            <tbody>
+                <td>Sind Sie sicher?</td>
+				' . $this->htmlAktionen($this->todo) . '
+			</tbody>				
 			</table>';
-    }
-
-    protected function htmlDelete($todo)
-    {
-        return
-        '<tr>
-            <td>Sind Sie sicher?</td>
-            <td>
-                ' . $this->htmlAktionen($todo) . '
-            </td>
-        </tr>';
     }
 
     protected function htmlAktionen($todo)
     {
-        return $this->htmlAktionEntfernen($todo);
+        return
+            '
+            <td>' . $this->htmlConfirmDelete($todo) . '</td>';
     }
 
-    protected function htmlAktionEntfernen($todo)
+    /**
+     * @param Todo $todo
+     * @return string
+     */
+    protected function htmlConfirmDelete($todo)
     {
         $query = http_build_query(array(
             Name::Task => Task::ConfirmDelete,
-            /*Name::TodoId => $todo->getTodoId(),*/
+            Name::TodoId => $todo->getTodoId(),
         ));
 
         $result = '<a href="/?' . $query . '">Endgültig löschen</a>';

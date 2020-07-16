@@ -8,6 +8,7 @@ use Application\Model\Response\Html;
 use Application\Model\Storage\Database;
 use Application\Model\Todo;
 use Application\View\Html\Page\TodoCreate;
+use LogicException;
 
 class CreateTodo extends Controller
 {
@@ -29,12 +30,12 @@ class CreateTodo extends Controller
                 else $this->response = $this->handleInvalidData($todo);
                 break;
             default:
-                throw new \LogicException('Unknown request method: ' . $requestMethod);
+                throw new LogicException('Unknown request method: ' . $requestMethod);
                 break;
         }
     }
 
-    protected function modelTodo()
+    /*protected function modelTodo()
     {
         $connection = $this->setup->databaseConnection();
         $storage = new Database($connection);
@@ -42,28 +43,13 @@ class CreateTodo extends Controller
         $result = $storage->createTodo($todoID);
 
         return $result;
-    }
+    }*/
 
     protected function responseShowForm($todo)
     {
         $view = new TodoCreate($todo);
         $view->render();
         return new Html($view->getHtml());
-    }
-
-    /**
-     * @param Todo $todo
-     */
-    protected function handleValidInput($todo)
-    {
-        $connection = $this->setup->databaseConnection();
-        $storage = new Database($connection);
-        $storage->createTodo($todo);
-    }
-
-    protected function handleInvalidData($todo)
-    {
-        return $this->responseShowForm($todo);
     }
 
     /**
@@ -81,5 +67,20 @@ class CreateTodo extends Controller
     protected function inputIsValid($todo)
     {
         return true;
+    }
+
+    /**
+     * @param Todo $todo
+     */
+    protected function handleValidInput($todo)
+    {
+        $connection = $this->setup->databaseConnection();
+        $storage = new Database($connection);
+        $storage->createTodo($todo);
+    }
+
+    protected function handleInvalidData($todo)
+    {
+        return $this->responseShowForm($todo);
     }
 }

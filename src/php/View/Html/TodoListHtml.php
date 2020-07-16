@@ -24,21 +24,21 @@ class TodoListHtml extends Html
     {
         $this->html =
             '<table>
-<thead>
+                <thead>
 				<tr>
 					<th>Inhalt</th>
 					<th>Erledigt</th>
 					<th>Aktionen</th>
 				</tr>
-			</thead>
-			<tbody>
-				' . $this->htmlTableRows() . '					
+			    </thead>
+			    <tbody>
+				    ' . $this->htmlTableRows() . '					
                 <tr>
                     <td></td>
                     <td>' . $this->htmlAktionCreate() . '</td>
                     <td></td>
                 </tr> 
-			</tbody>
+			    </tbody>
 			</table>
 			';
     }
