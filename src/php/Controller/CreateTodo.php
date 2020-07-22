@@ -33,17 +33,8 @@ class CreateTodo extends Controller
                 throw new LogicException('Unknown request method: ' . $requestMethod);
                 break;
         }
+
     }
-
-    /*protected function modelTodo()
-    {
-        $connection = $this->setup->databaseConnection();
-        $storage = new Database($connection);
-        $todoID = $this->request->valueOfParameter(Name::TodoId);
-        $result = $storage->createTodo($todoID);
-
-        return $result;
-    }*/
 
     protected function responseShowForm($todo)
     {
@@ -69,6 +60,15 @@ class CreateTodo extends Controller
         return true;
     }
 
+    protected function modelTodos()
+    {
+        $connection = $this->setup->databaseConnection();
+        $storage = new Database($connection);
+        $result = $storage->getAllTodos();
+
+        return $result;
+    }
+
     /**
      * @param Todo $todo
      */
@@ -77,6 +77,11 @@ class CreateTodo extends Controller
         $connection = $this->setup->databaseConnection();
         $storage = new Database($connection);
         $storage->createTodo($todo);
+
+        $todos = $this->modelTodos();
+        $result = new ShowTodoList($todos);
+
+        return $result;
     }
 
     protected function handleInvalidData($todo)

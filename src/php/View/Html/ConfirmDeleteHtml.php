@@ -1,5 +1,5 @@
 <?php
-
+//keine Verwendung mehr
 namespace Application\View\Html;
 
 use Application\Model\Input\Name;
@@ -9,14 +9,14 @@ use Application\View\Html;
 class ConfirmDeleteHtml extends Html
 {
     /** @var object */
-    protected $todo;
+    protected $todos;
 
     /**
-     * @param object $todo
+     * @param object $todos
      */
-    public function __construct($todo)
+    public function __construct($todos)
     {
-        $this->todo = $todo;
+        $this->todos = $todos;
     }
 
     public function render()
@@ -24,18 +24,18 @@ class ConfirmDeleteHtml extends Html
         $this->html =
             '<table>
                 <tbody>
-				' . $this->htmlDelete($this->todo) . '
+				' . $this->htmlDelete($this->todos) . '
 				</tbody>
 			</table>';
     }
 
-    protected function htmlDelete($todo)
+    protected function htmlDelete($todos)
     {
         return
             '<tr><td>gelöscht</td></tr>';
     }
 
-    protected function htmlAktion($todo)
+    protected function htmlAktion($todos)
     {
         $query = http_build_query(array(
             Name::Task => Task::ShowTodoList,

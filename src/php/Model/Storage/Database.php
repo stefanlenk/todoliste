@@ -2,7 +2,6 @@
 
 namespace Application\Model\Storage;
 
-use Application\Model\Input\Name;
 use Application\Model\Storage;
 use Application\Model\Todo;
 use PDO;
@@ -83,13 +82,13 @@ class Database extends Storage
 	public function updateTodo($todo)
     {
         //$todo = new Todo();
-        $sql = 'UPDATE todo SET todo_id= NULL, inhalt= :inhalt, ist_erledigt= :ist_erledigt,
+        $sql = 'UPDATE todo SET inhalt= :inhalt, ist_erledigt= :ist_erledigt,
                     erstellt_um = :erstellt_um, aktualisiert_um = :aktualisiert_um
                     WHERE todo_id = :todo_id';
         $statement = $this->connection->prepare($sql);
 
         $statement->execute(array(
-            ':todo_id' => $todo->getTodoId(),
+            //':todo_id' => $todo->getTodoId(),
             ':inhalt' => $todo->getInhalt(),
             ':ist_erledigt' => $todo->getIstErledigt(),
             ':erstellt_um' => $todo->getErstelltUm(),
