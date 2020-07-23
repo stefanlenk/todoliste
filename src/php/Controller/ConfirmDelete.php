@@ -4,6 +4,7 @@ namespace Application\Controller;
 
 use Application\Controller;
 use Application\Model\Input\Name;
+use Application\Model\Input\Task;
 use Application\Model\Response\Html;
 use Application\Model\Storage\Database;
 use Application\View\Html\Page\TodoList;
@@ -13,10 +14,11 @@ class ConfirmDelete extends Controller
     public function handleRequest()
     {
         $todo = $this->modelTodo();
-        $todos = $this->modelTodos();
+        return $this->gotoHomepage();
+        /*$todos = $this->modelTodos();
         $view = new TodoList($todos);
         $view->render();
-        $this->response = new Html($view->getHtml());
+        $this->response = new Html($view->getHtml());*/
     }
 
     protected function modelTodo()
@@ -36,5 +38,10 @@ class ConfirmDelete extends Controller
         $result = $storage->getAllTodos();
 
         return $result;
+    }
+
+    protected function gotoHomepage()
+    {
+        return header('Location: ?'. Name::Task .' = '. Task::ShowTodoList);
     }
 }

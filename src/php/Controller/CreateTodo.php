@@ -4,6 +4,7 @@ namespace Application\Controller;
 
 use Application\Controller;
 use Application\Model\Input\Name;
+use Application\Model\Input\Task;
 use Application\Model\Response\Html;
 use Application\Model\Storage\Database;
 use Application\Model\Todo;
@@ -25,6 +26,7 @@ class CreateTodo extends Controller
                 $this->assignRequestToTodo($todo);
                 $inputIsValid = $this->inputIsValid($todo);
 
+
                 if ($inputIsValid)
                     $this->response = $this->handleValidInput($todo);
                 else $this->response = $this->handleInvalidData($todo);
@@ -33,7 +35,6 @@ class CreateTodo extends Controller
                 throw new LogicException('Unknown request method: ' . $requestMethod);
                 break;
         }
-
     }
 
     protected function responseShowForm($todo)
@@ -41,6 +42,19 @@ class CreateTodo extends Controller
         $view = new TodoCreate($todo);
         $view->render();
         return new Html($view->getHtml());
+    }
+
+    protected function modelTodos()
+    {
+        $connection = $this->setup->databaseConnection();
+        $storage = new Database($connection);
+        $result = $storage->getAllTodos();
+        return $result;
+    }
+
+    protected function gotoHomepage()
+    {
+        return header('Location: ?'. Name::Task .' = '. Task::ShowTodoList);
     }
 
     /**
@@ -60,15 +74,6 @@ class CreateTodo extends Controller
         return true;
     }
 
-    protected function modelTodos()
-    {
-        $connection = $this->setup->databaseConnection();
-        $storage = new Database($connection);
-        $result = $storage->getAllTodos();
-
-        return $result;
-    }
-
     /**
      * @param Todo $todo
      */
@@ -78,10 +83,7 @@ class CreateTodo extends Controller
         $storage = new Database($connection);
         $storage->createTodo($todo);
 
-        $todos = $this->modelTodos();
-        $result = new ShowTodoList($todos);
-
-        return $result;
+        return $this->gotoHomepage();
     }
 
     protected function handleInvalidData($todo)
