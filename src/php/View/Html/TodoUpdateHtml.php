@@ -23,50 +23,27 @@ class TodoUpdateHtml extends Html
     public function render()
     {
         $this->html =
-            '<table>
-				<tbody>
-					' . $this->htmlTableSingle($this->todo) . '
-				</tbody>
-			</table>';
+            '<form method="post">
+				<p>' . $this->htmlUpdateTodo($this->todo) . '</p>			
+		 </form>';
     }
 
-	/*public function render()
-	{
-		$this->html =
-			'<table>
-				<thead>
-					<tr>
-						<th>Inhalt</th>
-						<th>Erledigt</th>
-						<th>Aktionen</th>
-					</tr>
-				</thead>
-				<tbody>
-					' . $this->htmlTableRow($this->todo) . '
-				</tbody>
-			</table>';
-	}*/
-    protected function htmlTableSingle($todo)
+    protected function htmlUpdateTodo($todo)
     {
         return
-            '<tr>
-                <th>Inhalt:</th>
-				<td>' . htmlspecialchars($todo->getInhalt()) . '</td>
-			</tr>
-            <tr>
-                <th>Erledigt:</th>
-                <td>' . $this->htmlIstErledigt($todo) . '</td>  
-            </tr>
-            <tr>
-                <th>Erstellungsdatum:</th>
-                <td>' . htmlspecialchars($todo->getErstelltUm()) . '</td>  
-            </tr>
-			<tr>
-                <th>Aktionen:</th>
-                <td>' . $this->htmlAktionen($todo) . '</td>
-            </tr>';
+            '<label for="Inhalt">Inhalt:</label>
+            <input id="Inhalt" name="' . Name::Inhalt . '"
+             value="' . htmlspecialchars($todo->getInhalt()) . '">
+            '. $this->htmlAktionEntfernen($todo) .'
+            <label for="Erledigt">Erledigt:
+            <input type="checkbox" id="Erledigt" name="' . Name::Erledigt . '" 
+            '. $this->htmlIstErledigt($todo) . '></label>         
+            <button name="Task" value="' . Task::UpdateTodo . '">speichern</button>';
     }
-	protected function htmlTableRow($todo)
+    //             value="' . htmlspecialchars($todo->getIstErledigt()) .'"
+    //<button name="Task" value="'. Task::DeleteTodo .'">löschen</button>
+
+	/*protected function htmlTableRow($todo)
 	{
 		return
 			'<tr>
@@ -74,7 +51,7 @@ class TodoUpdateHtml extends Html
 				<td>' . $this->htmlIstErledigt($todo) . '</td>
 				<td>' . $this->htmlAktionen($todo) . '</td>
 			</tr>';
-	}
+	}*/
 
 	/**
 	 * @param Todo $todo
@@ -82,20 +59,20 @@ class TodoUpdateHtml extends Html
 	 */
 	protected function htmlIstErledigt($todo)
 	{
-		return ($todo->getIstErledigt())
-			? 'Ja'
-			: 'Nein';
+        return ($todo->getIstErledigt())
+			? "checked='checked'"
+            : "";
 	}
 
 	/**
 	 * @param Todo $todo
 	 * @return string|null
 	 */
-	protected function htmlAktionen($todo)
+	/*protected function htmlAktionen($todo)
 	{
 		return $this->htmlAktionEntfernen($todo)
             . $this->htmlAktionSpeichern($todo);
-	}
+	}*/
 
 	/**
 	 * @param Todo $todo
@@ -112,7 +89,7 @@ class TodoUpdateHtml extends Html
 		return $result;
 	}
 
-	protected function htmlAktionSpeichern($todo)
+	/*protected function htmlAktionSpeichern($todo)
     {
         $query = http_build_query(array(
             Name::Task => Task::UpdateTodo,
@@ -121,5 +98,5 @@ class TodoUpdateHtml extends Html
 
         $result = '<a href="/?' . $query . '">Speichern</a>';
         return $result;
-    }
+    }*/
 }

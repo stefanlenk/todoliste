@@ -4,18 +4,37 @@ namespace Application\Controller;
 
 use Application\Controller;
 use Application\Model\Input\Name;
+use Application\Model\Input\Task;
 use Application\Model\Response\Html;
 use Application\Model\Storage\Database;
 use Application\View\Html\Page\TodoUpdate;
+use LogicException;
 
 class UpdateTodo extends Controller
 {
 	public function handleRequest()
 	{
-        $todo = $this->modelTodo();
-        $view = new TodoUpdate($todo);
-        $view->render();
-		$this->response = new Html($view->getHtml());
+        $requestMethod = $this->request->methodLowercased();
+
+        switch ($requestMethod) {
+            case 'get':
+                $todo = $this->readTodo();
+                $this->response = $this->responseShowForm($todo);
+                break;
+            case 'post':
+                $todo = $this->modelTodo();
+                $this->assignRequestToTodo($todo);
+                $inputIsValid = $this->inputIsValid($todo);
+
+
+                if ($inputIsValid)
+                    $this->response = $this->handleValidInput($todo);
+                else $this->response = $this->handleInvalidData($todo);
+                break;
+            default:
+                throw new LogicException('Unknown request method: ' . $requestMethod);
+                break;
+        }
 	}
 
     /**
@@ -27,7 +46,54 @@ class UpdateTodo extends Controller
         $storage = new Database($connection);
         $todoId = $this->request->valueOfParameter(Name::TodoId);
         $result = $storage->updateTodo($todoId);
-
         return  $result;
+    }
+
+    protected function readTodo()
+    {
+        $connection = $this->setup->databaseConnection();
+        $storage = new Database($connection);
+        $todoId = $this->request->valueOfParameter(Name::TodoId);
+        $result = $storage->getTodo($todoId);
+        return  $result;
+    }
+
+    protected function responseShowForm($todo)
+    {
+        $view = new TodoUpdate($todo);
+        $view->render();
+        return new Html($view->getHtml());
+    }
+
+    protected function gotoHomepage()
+    {
+        return header('Location: ?'. Name::Task .' = '. Task::ShowTodoList);
+    }
+
+    protected function assignRequestToTodo($todo)
+    {
+        $inhalt = $this->request->valueOfParameter(Name::Inhalt);
+        $istErledigt = $this->request->valueOfParameter(Name::Erledigt);
+
+        $todo->setInhalt($inhalt);
+        $todo->setIstErledigt($istErledigt);
+    }
+
+    protected function inputIsValid($todo)
+    {
+        return true;
+    }
+    protected function handleValidInput($todo)
+    {
+        $connection = $this->setup->databaseConnection();
+        $storage = new Database($connection);
+        $storage->updateTodo($todo);
+
+        return $this->gotoHomepage();
+    }
+
+    protected function handleInvalidData($todo)
+    {
+        return $this->responseShowForm($todo);
     }
 }

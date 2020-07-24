@@ -14,6 +14,7 @@ class ConfirmDelete extends Controller
     public function handleRequest()
     {
         $todo = $this->modelTodo();
+
         return $this->gotoHomepage();
         /*$todos = $this->modelTodos();
         $view = new TodoList($todos);

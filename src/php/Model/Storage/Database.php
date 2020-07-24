@@ -81,18 +81,14 @@ class Database extends Storage
 	 */
 	public function updateTodo($todo)
     {
-        //$todo = new Todo();
         $sql = 'UPDATE todo SET inhalt= :inhalt, ist_erledigt= :ist_erledigt,
-                    erstellt_um = :erstellt_um, aktualisiert_um = :aktualisiert_um
-                    WHERE todo_id = :todo_id';
+                aktualisiert_um = NOW()
+                WHERE todo_id = :todo_id';
         $statement = $this->connection->prepare($sql);
 
         $statement->execute(array(
-            //':todo_id' => $todo->getTodoId(),
             ':inhalt' => $todo->getInhalt(),
             ':ist_erledigt' => $todo->getIstErledigt(),
-            ':erstellt_um' => $todo->getErstelltUm(),
-            ':aktualisiert_um' => $todo->getAktualisiertUm(),
         ));
 
         $result = $statement->fetch(PDO::FETCH_ASSOC);
@@ -122,9 +118,9 @@ class Database extends Storage
 		$result->setTodoId($row['todo_id']);
 		$result->setInhalt($row['inhalt']);
 
-		$istErledigt = ($row['ist_erledigt'] == 0)
-			? false
-			: true;
+		$istErledigt = ($row['ist_erledigt'] == 1);
+			//? true
+			//: false;
 
 		$result->setIstErledigt($istErledigt);
 		$result->setErstelltUm($row['erstellt_um']);
