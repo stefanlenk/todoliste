@@ -2,22 +2,23 @@
 
 namespace Application\View\Html\Page;
 
+use Application\Model\Request;
 use Application\View\Html\Page;
 use Application\View\Html\TodoUpdateHtml;
 
 class TodoUpdate extends Page
 {
-	/** @var object */
-	protected $todo;
+    /** @var  Request */
+    protected $request;
 
-	/**
-	 * @param $todo
-	 */
-	public function __construct($todo)
+	public function __construct($request)
 	{
-		$this->todo = $todo;
+		$this->request = $request;
 	}
 
+    /**
+     * @inheritDoc
+     */
 	protected function htmlPageTitle()
 	{
 		return 'Todo bearbeiten';
@@ -33,7 +34,7 @@ class TodoUpdate extends Page
 
 	protected function htmlTodoUpdate()
 	{
-		$view = new TodoUpdateHtml($this->todo);
+		$view = new TodoUpdateHtml($this->request);
 		$view->render();
 		$result = $view->getHtml();
 		return $result;

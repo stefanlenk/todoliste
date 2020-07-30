@@ -44,4 +44,3 @@ class TodoCreateHtml extends Html
             <button name="Task" value="' . Task::CreateTodo . '">speichern</button>';
     }
 }
-//value="' . htmlspecialchars($todo->getIstErledigt()) . '"

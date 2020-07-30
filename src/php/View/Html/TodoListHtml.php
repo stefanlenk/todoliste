@@ -101,7 +101,6 @@ class TodoListHtml extends Html
         $query = http_build_query(array(
             Name::Task => Task::ShowTodo,
             Name::TodoId => $todo->getTodoId(),
-
         ));
 
         $result = '<a href="/?' . $query . '">Anzeigen</a>';
@@ -141,8 +140,7 @@ class TodoListHtml extends Html
     protected function htmlAktionCreate()
     {
         $query = http_build_query(array(
-            Name::Task => Task::CreateTodo
-            /*Name::TodoId => $todo->setTodoId(),*/
+            Name::Task => Task::CreateTodo,
         ));
 
         $result = '<a href="/?' . $query . '">Todo anlegen</a>';

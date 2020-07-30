@@ -5,21 +5,14 @@ namespace Application\Controller;
 use Application\Controller;
 use Application\Model\Input\Name;
 use Application\Model\Input\Task;
-use Application\Model\Response\Html;
 use Application\Model\Storage\Database;
-use Application\View\Html\Page\TodoList;
 
 class ConfirmDelete extends Controller
 {
     public function handleRequest()
     {
         $todo = $this->modelTodo();
-
         return $this->gotoHomepage();
-        /*$todos = $this->modelTodos();
-        $view = new TodoList($todos);
-        $view->render();
-        $this->response = new Html($view->getHtml());*/
     }
 
     protected function modelTodo()
@@ -32,14 +25,14 @@ class ConfirmDelete extends Controller
         return $result;
     }
 
-    protected function modelTodos()
+ /*   protected function modelTodos()
     {
         $connection = $this->setup->databaseConnection();
         $storage = new Database($connection);
         $result = $storage->getAllTodos();
 
         return $result;
-    }
+    }*/
 
     protected function gotoHomepage()
     {

@@ -26,17 +26,16 @@ class TodoDeleteHtml extends Html
             '<table>
             <tbody>
                 <td>Sind Sie sicher?</td>
-				' . $this->htmlAktionen($this->todo) . '
+				<td>' . $this->htmlConfirmDelete($this->todo) . '</td>
 			</tbody>				
 			</table>';
     }
 
-    protected function htmlAktionen($todo)
+    /*protected function htmlAktionen($todo)
     {
         return
-            '
-            <td>' . $this->htmlConfirmDelete($todo) . '</td>';
-    }
+            '<td>' . $this->htmlConfirmDelete($todo) . '</td>';
+    }*/
 
     /**
      * @param Todo $todo

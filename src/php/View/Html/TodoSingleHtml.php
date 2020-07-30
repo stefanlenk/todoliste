@@ -31,7 +31,6 @@ class TodoSingleHtml extends Html
 			';
     }
 
-    // Todo ToDo anlegen benönigt zwei Zellen in der Tabelle
     protected function htmlTableSingle($todo)
     {
         return

@@ -7,6 +7,7 @@ use Application\Model\Input\Name;
 use Application\Model\Input\Task;
 use Application\Model\Response\Html;
 use Application\Model\Storage\Database;
+use Application\Model\Todo;
 use Application\View\Html\Page\TodoUpdate;
 use LogicException;
 
@@ -18,14 +19,13 @@ class UpdateTodo extends Controller
 
         switch ($requestMethod) {
             case 'get':
-                $todo = $this->readTodo();
+                $todo = $this->modelTodo();
                 $this->response = $this->responseShowForm($todo);
                 break;
             case 'post':
-                $todo = $this->modelTodo();
+                $todo = new Todo();
                 $this->assignRequestToTodo($todo);
                 $inputIsValid = $this->inputIsValid($todo);
-
 
                 if ($inputIsValid)
                     $this->response = $this->handleValidInput($todo);
@@ -45,16 +45,8 @@ class UpdateTodo extends Controller
         $connection = $this->setup->databaseConnection();
         $storage = new Database($connection);
         $todoId = $this->request->valueOfParameter(Name::TodoId);
-        $result = $storage->updateTodo($todoId);
-        return  $result;
-    }
-
-    protected function readTodo()
-    {
-        $connection = $this->setup->databaseConnection();
-        $storage = new Database($connection);
-        $todoId = $this->request->valueOfParameter(Name::TodoId);
         $result = $storage->getTodo($todoId);
+
         return  $result;
     }
 
@@ -83,6 +75,10 @@ class UpdateTodo extends Controller
     {
         return true;
     }
+
+    /**
+     * @param Todo $todo
+     */
     protected function handleValidInput($todo)
     {
         $connection = $this->setup->databaseConnection();
