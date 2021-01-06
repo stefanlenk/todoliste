@@ -9,11 +9,13 @@ class Todo
 
 	/** @var string */
 	protected $inhalt;
+
 	/** @var bool */
 	protected $istErledigt;
 
 	/** @var string */
 	protected $erstelltUm;
+
 	/** @var  string */
 	protected $aktualisiertUm;
 

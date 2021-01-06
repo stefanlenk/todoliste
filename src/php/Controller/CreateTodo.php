@@ -73,6 +73,7 @@ class CreateTodo extends Controller
         $connection = $this->setup->databaseConnection();
         $storage = new Database($connection);
         $storage->createTodo($todo);
+
         return $this->gotoHomepage();
     }
 

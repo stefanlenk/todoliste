@@ -39,8 +39,7 @@ class TodoListHtml extends Html
                     <td></td>
                 </tr> 
 			    </tbody>
-			</table>
-			';
+			</table>';
     }
 
     /**

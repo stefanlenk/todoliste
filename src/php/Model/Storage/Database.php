@@ -146,7 +146,6 @@ class Database extends Storage
 			//: false;
 
 		$result->setIstErledigt($istErledigt);
-		//$result->setIstErledigt($row['ist_erledigt']);
 		$result->setErstelltUm($row['erstellt_um']);
 		$result->setAktualisiertUm($row['aktualisiert_um']);
 

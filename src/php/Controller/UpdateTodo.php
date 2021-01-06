@@ -16,6 +16,7 @@ class UpdateTodo extends Controller
 	public function handleRequest()
 	{
         $requestMethod = $this->request->methodLowercased();
+        $todo = new Todo();
 
         switch ($requestMethod) {
             case 'get':
@@ -23,7 +24,6 @@ class UpdateTodo extends Controller
                 $this->response = $this->responseShowForm($todo);
                 break;
             case 'post':
-                $todo = new Todo();
                 $this->assignRequestToTodo($todo);
                 $inputIsValid = $this->inputIsValid($todo);
 
@@ -47,7 +47,7 @@ class UpdateTodo extends Controller
         $todoId = $this->request->valueOfParameter(Name::TodoId);
         $result = $storage->getTodo($todoId);
 
-        return  $result;
+        return $result;
     }
 
     protected function responseShowForm($todo)
