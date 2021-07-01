@@ -77,6 +77,7 @@ class Database extends Storage
                 break;
             default:
                 $todo->setIstErledigt(false);
+                break;
         }
 
         $statement->execute(array(

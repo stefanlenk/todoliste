@@ -46,12 +46,19 @@ class TodoSingleHtml extends Html
                 <th>Erstellungsdatum:</th>
                 <td>' . htmlspecialchars($todo->getErstelltUm()) . '</td>  
             </tr>
+            <tr>
+                <th>Änderungssdatum:</th>
+                <td>' . htmlspecialchars($todo->getAktualisiertUm()) . '</td>  
+            </tr>
 			<tr>
                 <th>Aktionen:</th>
                 <td>' . $this->htmlAktionen($todo) . '</td>
             </tr>
             <tr>                			  
 			    <td colspan="2">' . $this->htmlAktionCreate() . '</td>            
+            </tr>
+            <tr>                			  
+			    <td colspan="2">' . $this->htmlAktionLokalisierung() . '</td>            
             </tr>';
     }
 
@@ -113,6 +120,13 @@ class TodoSingleHtml extends Html
         ));
 
         $result = '<a href="/?' . $query . '">Todo anlegen</a>';
+        return $result;
+    }
+
+    protected function htmlAktionLokalisierung()
+    {
+        $result = '<button onclick="geoFindMe()">Zeige meine Position an</button></tr>
+                <div id="out"></div>';
         return $result;
     }
 }

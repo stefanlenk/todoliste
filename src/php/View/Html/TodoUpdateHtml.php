@@ -10,13 +10,13 @@ use Application\View\Html;
 class TodoUpdateHtml extends Html
 {
     /**
-     * @var
+     * @var object
      */
     protected $todo;
 
     /**
      * TodoUpdateHtml constructor.
-     * @param $todo
+     * @param object $todo
      */
     public function __construct($todo)
     {
@@ -43,7 +43,7 @@ class TodoUpdateHtml extends Html
              value="' . htmlspecialchars($todo->getInhalt()) . '">
             '. $this->htmlAktionEntfernen($todo) .'
             <label for="Erledigt">Erledigt:
-            <input type="checkbox" id="Erledigt" name="' . Name::Erledigt . '" 
+            <input type=checkbox id="Erledigt" name="' . Name::Erledigt . '"
             '. $this->htmlIstErledigt($todo) . '></label>'
             . $this->htmlAktionSpeichern($todo);
     }*/
@@ -55,7 +55,7 @@ class TodoUpdateHtml extends Html
              value="' . htmlspecialchars($todo->getInhalt()) . '">
             '. $this->htmlAktionEntfernen($todo) .'
             <label for="Erledigt">Erledigt:
-            <input type="checkbox" id="Erledigt" name="' . Name::Erledigt . '" 
+            <input type=checkbox id="Erledigt" name="' . Name::Erledigt . '" 
             '. $this->htmlIstErledigt($todo) . '></label>
             <button name="Task" value="' . Task::UpdateTodo . '">speichern</button>';
     }
@@ -67,7 +67,7 @@ class TodoUpdateHtml extends Html
              value="' . htmlspecialchars($todo->getInhalt()) . '">
              <button name="Task" value="' . Task::DeleteTodo . '">löschen</button>
             <label for="Erledigt">Erledigt:
-            <input type="checkbox" id="Erledigt" name="' . Name::Erledigt . '" 
+            <input type=checkbox id="Erledigt" name="' . Name::Erledigt . '"
             ' . $this->htmlIstErledigt($todo) . '></label>
             <button name="Task" value="' . Task::UpdateTodo . '">speichern</button>
             ';
@@ -104,6 +104,7 @@ class TodoUpdateHtml extends Html
         $query = http_build_query(array(
             Name::Task => Task::UpdateTodo,
             Name::TodoId => $todo->getTodoId(),
+            Name::Inhalt => $todo->getInhalt(),
         ));
 
         $result = '<a href="/?' . $query . '">Speichern</a>';

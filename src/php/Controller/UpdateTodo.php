@@ -62,6 +62,9 @@ class UpdateTodo extends Controller
         return header('Location: ?'. Name::Task .' = '. Task::ShowTodoList);
     }
 
+    /**
+     * @param Todo $todo
+     */
     protected function assignRequestToTodo($todo)
     {
         $inhalt = $this->request->valueOfParameter(Name::Inhalt);
