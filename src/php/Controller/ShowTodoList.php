@@ -27,5 +27,4 @@ class ShowTodoList extends Controller
 		$result = $storage->getAllTodos();
 		return $result;
 	}
-
 }

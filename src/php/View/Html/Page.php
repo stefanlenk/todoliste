@@ -14,8 +14,8 @@ abstract class Page extends Html
 			'<!DOCTYPE html>
 			<html lang="de">
 			  <head>
-				<meta charset="utf-8" />
-				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+				<meta charset="utf-8">
+				<meta name="viewport" content="width=device-width, initial-scale=1.0">
 				<title>' . $this->htmlPageTitle() . ' | ToDo-Liste</title>
 			  </head>
 			  ' . $this->htmlAktionHomepage() . '			  

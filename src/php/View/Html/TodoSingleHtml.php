@@ -56,9 +56,6 @@ class TodoSingleHtml extends Html
             </tr>
             <tr>                			  
 			    <td colspan="2">' . $this->htmlAktionCreate() . '</td>            
-            </tr>
-            <tr>                			  
-			    <td colspan="2">' . $this->htmlAktionLokalisierung() . '</td>            
             </tr>';
     }
 
@@ -120,13 +117,6 @@ class TodoSingleHtml extends Html
         ));
 
         $result = '<a href="/?' . $query . '">Todo anlegen</a>';
-        return $result;
-    }
-
-    protected function htmlAktionLokalisierung()
-    {
-        $result = '<button onclick="geoFindMe()">Zeige meine Position an</button></tr>
-                <div id="out"></div>';
         return $result;
     }
 }
