@@ -13,7 +13,8 @@
 
 
 -- Exportiere Datenbank Struktur für todoliste
-CREATE DATABASE IF NOT EXISTS `todoliste` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+CREATE DATABASE IF NOT EXISTS `todoliste`
+/*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 USE `todoliste`;
 
 -- Exportiere Struktur von Tabelle todoliste.todo

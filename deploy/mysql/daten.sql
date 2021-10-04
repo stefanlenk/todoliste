@@ -4,14 +4,7 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
-CREATE TABLE IF NOT EXISTS `todo` (
-  `todo_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `inhalt` text NOT NULL,
-  `ist_erledigt` tinyint(3) unsigned NOT NULL,
-  `erstellt_um` datetime NOT NULL,
-  `aktualisiert_um` datetime NOT NULL,
-  PRIMARY KEY (`todo_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+USE `todoliste`;
 
 /*!40000 ALTER TABLE `todo` DISABLE KEYS */;
 INSERT INTO `todo` (`todo_id`, `inhalt`, `ist_erledigt`, `erstellt_um`, `aktualisiert_um`) VALUES
