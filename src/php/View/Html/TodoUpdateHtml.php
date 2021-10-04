@@ -53,7 +53,7 @@ class TodoUpdateHtml extends Html
             '<label for="Inhalt">Inhalt:</label>
             <input id="Inhalt" name="' . Name::Inhalt . '"
              value="' . htmlspecialchars($todo->getInhalt()) . '">
-            '. $this->htmlAktionEntfernen($todo) .'
+            <button value="'. $this->htmlAktionEntfernen($todo) .'">entfernen</button>
             <label for="Erledigt">Erledigt:
             <input type=checkbox id="Erledigt" name="' . Name::Erledigt . '" 
             '. $this->htmlIstErledigt($todo) . '></label>
@@ -95,7 +95,7 @@ class TodoUpdateHtml extends Html
             Name::TodoId => $todo->getTodoId(),
         ));
 
-        $result = '<a href="/?' . $query . '">Entfernen</a>';
+        $result = '<a href="/?' . $query . '"></a>';
         return $result;
     }
 
@@ -103,7 +103,7 @@ class TodoUpdateHtml extends Html
     {
         $query = http_build_query(array(
             Name::Task => Task::UpdateTodo,
-            Name::TodoId => $todo->getTodoId(),
+            Name::Erledigt => $todo->getIstErledigt(),
             Name::Inhalt => $todo->getInhalt(),
         ));
 

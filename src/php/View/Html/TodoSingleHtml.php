@@ -53,9 +53,6 @@ class TodoSingleHtml extends Html
 			<tr>
                 <th>Aktionen:</th>
                 <td>' . $this->htmlAktionen($todo) . '</td>
-            </tr>
-            <tr>                			  
-			    <td colspan="2">' . $this->htmlAktionCreate() . '</td>            
             </tr>';
     }
 
@@ -107,16 +104,6 @@ class TodoSingleHtml extends Html
         ));
 
         $result = '<a href="/?' . $query . '">Entfernen</a>';
-        return $result;
-    }
-
-    protected function htmlAktionCreate()
-    {
-        $query = http_build_query(array(
-            Name::Task => Task::CreateTodo
-        ));
-
-        $result = '<a href="/?' . $query . '">Todo anlegen</a>';
         return $result;
     }
 }

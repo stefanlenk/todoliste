@@ -33,11 +33,7 @@ class TodoListHtml extends Html
 			    </thead>
 			    <tbody>
 				    ' . $this->htmlTableRows() . '					
-                <tr>
-                    <td></td>
-                    <td>' . $this->htmlAktionCreate() . '</td>
-                    <td></td>
-                </tr> 
+
 			    </tbody>
 			</table>';
     }
@@ -133,16 +129,6 @@ class TodoListHtml extends Html
         ));
 
         $result = '<a href="/?' . $query . '">Entfernen</a>';
-        return $result;
-    }
-
-    protected function htmlAktionCreate()
-    {
-        $query = http_build_query(array(
-            Name::Task => Task::CreateTodo,
-        ));
-
-        $result = '<a href="/?' . $query . '">Todo anlegen</a>';
         return $result;
     }
 }
