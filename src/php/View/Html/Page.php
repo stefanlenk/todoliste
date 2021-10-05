@@ -17,6 +17,7 @@ abstract class Page extends Html
 				<meta charset="utf-8">
 				<meta name="viewport" content="width=device-width, initial-scale=1.0">
 				<title>' . $this->htmlPageTitle() . ' | ToDo-Liste</title>
+				<link rel="icon" type="image/x-icon" href="todo-list.png">
 				<link rel="stylesheet" href="stylesheet.css">	
 			  </head>
               <nav>

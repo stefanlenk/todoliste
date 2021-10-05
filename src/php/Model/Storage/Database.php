@@ -51,8 +51,6 @@ class Database extends Storage
 			':todo_id' => $todoId
 		));
 
-		// TODO: was passiert wenn gar kein Ergebnis kommt?
-
 		$row = $statement->fetch(PDO::FETCH_ASSOC);
 
 		$result = $this->newTodo($row);

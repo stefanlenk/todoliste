@@ -46,8 +46,8 @@ class TodoUpdateHtml extends Html
             <input type=checkbox id="Erledigt" name="' . Name::Erledigt . '"
             '. $this->htmlIstErledigt($todo) . '></label>'
             . $this->htmlAktionSpeichern($todo);
-    }*/
-    /*protected function htmlUpdateTodo($todo)                    //entfernen htmlAktion, update als Button
+    }
+    protected function htmlUpdateTodo($todo)                    //entfernen htmlAktion, update als Button
     {
         return
             '<label for="Inhalt">Inhalt:</label>
@@ -57,7 +57,7 @@ class TodoUpdateHtml extends Html
             <label for="Erledigt">Erledigt:
             <input type=checkbox id="Erledigt" name="' . Name::Erledigt . '" 
             '. $this->htmlIstErledigt($todo) . '></label>
-            <button name="Task" value="' . Task::UpdateTodo . '">speichern</button>';
+            <button class="button" name="Task" value="' . Task::UpdateTodo . '">speichern</button>';
     }
     */
     protected function htmlUpdateTodo($todo)                      //Buttons
@@ -66,14 +66,14 @@ class TodoUpdateHtml extends Html
             '<label for="Inhalt">Inhalt:</label>
             <input id="Inhalt" name="' . Name::Inhalt . '"
              value="' . htmlspecialchars($todo->getInhalt()) . '">
-             <button name="Task" value="' . Task::DeleteTodo . '">löschen</button>
             <label for="Erledigt">Erledigt:
             <input type=checkbox id="Erledigt" name="' . Name::Erledigt . '"
             ' . $this->htmlIstErledigt($todo) . '></label>
-            <button name="Task" value="' . Task::UpdateTodo . '">speichern</button>
+            <button class="button" name="Task" value="' . Task::UpdateTodo . '">speichern</button>
             ';
     }
 
+/* <button name="Task" value="' . Task::DeleteTodo . '">löschen</button>*/
     /**
      * @param Todo $todo
      * @return string

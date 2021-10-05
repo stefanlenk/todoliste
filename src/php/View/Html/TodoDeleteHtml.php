@@ -20,22 +20,33 @@ class TodoDeleteHtml extends Html
         $this->todo = $todo;
     }
 
+    /*public function render()
+    {
+        $this->html =
+            '<table>
+            <tbody>
+                <tr>
+                <td>Sind Sie sicher?</td>
+				<td>'. $this->htmlConfirmDelete($this->todo) .'</td>
+				</tr>
+				<tr>
+				<td>'. $this->htmlAktionHomepage () .'</td>
+				</tr>
+			</tbody>				
+			</table>';
+    }*/
+
     public function render()
     {
         $this->html =
             '<table>
             <tbody>
-                <td>Sind Sie sicher?</td>
-				<td>' . $this->htmlConfirmDelete($this->todo) . '</td>
+                <li class="button">Sind Sie sicher?</li>
+				<li class="button">'. $this->htmlConfirmDelete($this->todo) .'</li>
+				<li class="button">'. $this->htmlAktionHomepage () .'</li>
 			</tbody>				
 			</table>';
     }
-
-    /*protected function htmlAktionen($todo)
-    {
-        return
-            '<td>' . $this->htmlConfirmDelete($todo) . '</td>';
-    }*/
 
     /**
      * @param Todo $todo
@@ -49,6 +60,16 @@ class TodoDeleteHtml extends Html
         ));
 
         $result = '<a href="/?' . $query . '">Endgültig löschen</a>';
+        return $result;
+    }
+
+    protected function htmlAktionHomepage()
+    {
+        $query = http_build_query(array(
+            Name::Task => Task::ShowTodoList
+        ));
+
+        $result = '<a href="/?' . $query . '">Nein</a>';
         return $result;
     }
 }

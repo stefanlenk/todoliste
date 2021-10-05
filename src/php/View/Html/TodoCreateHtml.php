@@ -36,11 +36,10 @@ class TodoCreateHtml extends Html
     {
         return
             '<label for="Inhalt">Inhalt:</label>
-            <input id="Inhalt" name="' . Name::Inhalt . '"
-             value="' . htmlspecialchars($todo->getInhalt()) . '">
+            <input id="Inhalt" name="' . Name::Inhalt . '">
             <label for="Erledigt">Erledigt:
             <input type=checkbox id="Erledigt" name="' . Name::Erledigt . '">
             </label>
-            <button name="Task" value="' . Task::CreateTodo . '">speichern</button>';
+            <button class="button" name="Task" value="' . Task::CreateTodo . '">speichern</button>';
     }
 }

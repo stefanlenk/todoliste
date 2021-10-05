@@ -41,14 +41,6 @@ nav li [aria-current]  {
     color: darkred;
 }
 
-/* unvisited link
-a:link {
-    color: aquamarine;
-}*/
-
-/* visited link
-a:visited { color: darkred;}  */
-
 /* mouse over link */
 a:hover {
     color: blue;
@@ -86,8 +78,8 @@ li,label {
 }
 
 li:nth-child(even) {
-    color: aliceblue;
-    background-color: steelblue;
+    color: darkblue;
+    background-color: bisque;
 }
 
 li:nth-child(odd) {
@@ -121,7 +113,9 @@ tr:nth-child(odd) {
     background-color: azure
 }
 
-.button-create {
+.button {
+    color: aliceblue;
+    background-color: steelblue;
     margin: 2em auto;
     flex-direction: row;
     display: block;
