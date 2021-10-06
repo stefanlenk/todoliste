@@ -9,12 +9,12 @@ use PDO;
 class Database extends Storage
 {
 	/** @var PDO */
-	protected $connection;
+	protected PDO $connection;
 
 	/**
 	 * @param PDO $connection
 	 */
-	public function __construct($connection)
+	public function __construct( PDO $connection)
 	{
 		parent::__construct();
 
@@ -111,6 +111,7 @@ class Database extends Storage
         $statement->execute(array(
             ':inhalt' => $todo->getInhalt(),
             ':ist_erledigt' => $todo->getIstErledigt(),
+            ':aktualisiert_um' => $todo->getAktualisiertUm(),
         ));
 
         $result = $statement->fetch(PDO::FETCH_ASSOC);
